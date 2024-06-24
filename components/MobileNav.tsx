@@ -53,7 +53,7 @@ const MobileNav = ({user}:MobileNavProps) => {
                                     <SheetClose asChild>
                                         <Link 
                                             key={item.route} 
-                                            href={item.label}
+                                            href={item.route}
                                             className={cn('mobilenav-sheet_close w-full', {
                                                 'bg-bank-gradient': isActive,
                                             })}
