@@ -10,18 +10,12 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import {
   Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { signIn, signUp } from '@/lib/actions/user.actions'
  
 
 
@@ -49,18 +43,18 @@ const AuthForm = ({type}:{type:string}) => {
         try {
             //Sign up with Appwrite & create a plaid link token
             if(type === 'sign-up') {
-                //const newUser = await signUp(data)
+                const newUser = await signUp(data)
 
-                //setuser(newUser)
+                setuser(newUser)
             }
 
             if(type === 'sign-in') {
-                // const response = await SignIn({
-                //     email: data.email,
-                //     password: data.password
-                // })
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password
+                })
 
-                // if (response) router.push('/')
+                if (response) router.push('/')
             }
 
         } catch (error) {
@@ -167,7 +161,7 @@ const AuthForm = ({type}:{type:string}) => {
                                             control={form.control}
                                             name="sAIdNumber"
                                             label="South African ID Number"
-                                            placeholder="YYYY-MM-DD"
+                                            placeholder="Enter your ID"
                                         />
                                     </div>
                                 </>
